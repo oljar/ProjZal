@@ -46,7 +46,7 @@ class ItemListName(Resource):
 
 @app.route('/')
 def aaa():
-        return 'ok'
+        return 'oki'
 
 api.add_resource(Item,'/<string:name>')
 api.add_resource(ItemList,'/list')
