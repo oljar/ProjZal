@@ -25,9 +25,9 @@ class Item (Resource):
 
     def post (self,name):
         data = request.get_json()
-        item = {'name' : name , 't1' : data['t1'], 't2' : data['t2'], 't3' :data['t3'] ,'t4': data['t4']}
+        item = {'name' : name , 't1' : data['t1'], 't2' : data['t2'], 't3' :data['t3'] ,'t4': data['t4'], 'time': data['time']}
         items.append(item)
-        data_operation.add_data_db(name,data['t1'],data['t2'],data['t3'],data['t4'])
+        data_operation.add_data_db(name,data['t1'],data['t2'],data['t3'],data['t4'],data['time'])
 
         return item,201
 
@@ -53,6 +53,6 @@ api.add_resource(ItemList,'/list')
 api.add_resource(ItemListName,'/list/<string:name>')
 
 
-#app.run(debug=True)
+app.run(debug=True)
 
 
