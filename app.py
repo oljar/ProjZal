@@ -52,7 +52,7 @@ api.add_resource(Item,'/<string:name>')
 api.add_resource(ItemList,'/list')
 api.add_resource(ItemListName,'/list/<string:name>')
 
-if __name__ =="__main__":
-    app.run(debug=True)
+
+#app.run(debug=True)
 
 
