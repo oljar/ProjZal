@@ -55,5 +55,5 @@ def get_method():
     print(req.text)
 
 
-post_method(data_generator)
-#get_method()
+#post_method(data_generator)
+get_method()
