@@ -14,7 +14,8 @@ def create_db():
         "t2"	REAL,
         "t3"    REAL,
         "t4"	REAl,
-        "Time"  STRING
+        "Time"  STRING,
+        "Date"  STRING
         
     );
     """
@@ -22,15 +23,15 @@ def create_db():
     conn.commit()
     conn.close()
 
-def add_data_db(name,t1,t2,t3,t4,time):
+def add_data_db(name,t1,t2,t3,t4,time,date):
     conn =sqlite3.connect("data.db")
     c=conn.cursor()
     query = """
-         INSERT INTO "stock" ("name", "t1", "t2", "t3", "t4", "time")
-         VALUES (:name, :t1, :t2, :t3, :t4, :time);       
+         INSERT INTO "stock" ("name", "t1", "t2", "t3", "t4", "time", "date")
+         VALUES (:name, :t1, :t2, :t3, :t4, :time, :date);       
 """
 
-    item = {"name":name, "t1":t1, "t2":t2, "t3":t3,"t4":t4, "time":time }
+    item = {"name":name, "t1":t1, "t2":t2, "t3":t3,"t4":t4, "time":time, "date":date }
 
     c.execute(query, item)
 
