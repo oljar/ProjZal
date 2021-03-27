@@ -13,7 +13,7 @@ api = Api(app)
 if not os.path.isfile('data.db'):
     data_operation.create_db()
 
-print(data_operation)
+
 items = []
 
 
