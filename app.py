@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 api = Api(app)
 
-data_operation.create_db()
+#data_operation.create_db()
 
 items = []
 
