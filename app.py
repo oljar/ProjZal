@@ -9,9 +9,9 @@ import data_operation
 app = Flask(__name__)
 
 api = Api(app)
-#
-# if not os.path.isfile('data.db'):
-#     data_operation.create_db()
+
+if not os.path.isfile('data.db'):
+    data_operation.create_db()
 
 
 items = []
