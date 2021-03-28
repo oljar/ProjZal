@@ -7,6 +7,7 @@ import data_operation
 import jinja2
 import requests
 
+
 app = Flask(__name__,template_folder='templates')
 
 api = Api(app)
@@ -50,25 +51,18 @@ class ItemListName(Resource):
 
 
 @app.route('/')
-def aaa():
-    return 'ok'
+def index():
 
 
-@app.route('/chart')
-def line_chart():
-    name_1='aaa'
-    name_2='bbb'
-    name_3='ccc'
 
-    value = 10000
-    data = [[1,1000,200],[2,1500,300],[3,13000,400],[4,4000,500]]
-    return render_template('chart.html',name_1=name_1 , name_2=name_2 , name_3= name_3, data=data)
+    return render_template('index.html')
+
 
 
 
 
 @app.route('/chart_2')
-def index():
+def line_chart_2():
 
 
 
@@ -104,9 +98,9 @@ api.add_resource(ItemListName, '/list/<string:name>')
 # app.run(debug=True)
 
 #
-# if __name__ == "__main__":
-#    #port = int(os.environ.get("PORT", 5000))
+if __name__ == "__main__":
+#port = int(os.environ.get("PORT", 5000))
 #    #app.run(host='0.0.0.0', port=port)
 #
-#    app.run(debug=True)
+    app.run(debug=True)
 #app.run()
