@@ -53,9 +53,21 @@ class ItemListName(Resource):
 @app.route('/')
 def index():
 
+      return render_template('index.html')
 
 
-    return render_template('index.html')
+
+@app.route('/aaa', methods=['POST'])
+def aaa():
+    data_start = request.form.get('data_start')
+    time_start = request.form.get('time_start')
+
+    data_stop = request.form.get('data_stop')
+    time_stop = request.form.get('time_stop')
+
+    context = {'data_start': data_start, 'time_start': time_start,'data_stop': data_stop, 'time_stop': time_stop}
+    return render_template('aaa.html',**context)
+
 
 
 
@@ -98,9 +110,9 @@ api.add_resource(ItemListName, '/list/<string:name>')
 # app.run(debug=True)
 
 # #
-# if __name__ == "__main__":
+if __name__ == "__main__":
 # #port = int(os.environ.get("PORT", 5000))
 # #    #app.run(host='0.0.0.0', port=port)
 # #
-#     app.run(debug=True)
+     app.run(debug=True)
 # #app.run()
