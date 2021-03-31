@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request,render_template
+from flask import Flask, request,render_template, redirect
 from flask_restful import Resource, Api
 import json
 import data_operation
@@ -57,23 +57,11 @@ def index():
 
 
 
-@app.route('/aaa', methods=['POST'])
-def aaa():
-    data_start = request.form.get('data_start')
-    time_start = request.form.get('time_start')
-
-    data_stop = request.form.get('data_stop')
-    time_stop = request.form.get('time_stop')
-
-    context = {'data_start': data_start, 'time_start': time_start,'data_stop': data_stop, 'time_stop': time_stop}
-    return render_template('aaa.html',**context)
 
 
 
 
-
-
-@app.route('/chart_2')
+@app.route('/chart_2', methods=['POST'])
 def line_chart_2():
 
 
@@ -96,7 +84,17 @@ def line_chart_2():
     h_axis_name = 'temperatura'
     name=('','linia_1','linia_2','linia_3','linia_4')
 
-    return render_template('chart_2.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1)
+
+    data_start = request.form.get('data_start')
+    time_start = request.form.get('time_start')
+
+    data_stop = request.form.get('data_stop')
+    time_stop = request.form.get('time_stop')
+
+    data_time =(data_start,time_start,data_stop,time_stop)
+
+
+    return render_template('chart_2.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1,data_time=data_time)
 
 
 
