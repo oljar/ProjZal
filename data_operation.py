@@ -44,10 +44,10 @@ def get_data_db(da_ti):
     conn =sqlite3.connect("data.db")
     c=conn.cursor()
     query = """
-    SELECT * FROM "stock" WHERE "time" > ? AND "time" < ? ;
+    SELECT * FROM "stock" WHERE "date" > ? AND "date" < ? ;
     """
 
-    c.execute(query,(str(da_ti[1]),str(da_ti[3])))
+    c.execute(query,(str(da_ti[0]),str(da_ti[2])))
 
     item =c.fetchall()
     return item
