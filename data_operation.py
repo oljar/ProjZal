@@ -40,14 +40,14 @@ def add_data_db(name,t1,t2,t3,t4,time,date):
     conn.close()
 
 
-def get_data_db(da_ti):
+def get_data_db_all():
     conn =sqlite3.connect("data.db")
     c=conn.cursor()
     query = """
-    SELECT * FROM "stock" WHERE "date" > ? AND "date" < ? ;
+    SELECT * FROM "stock"  ;
     """
 
-    c.execute(query,(str(da_ti[0]),str(da_ti[2])))
+    c.execute(query,)
 
     item =c.fetchall()
     return item

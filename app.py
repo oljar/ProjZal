@@ -48,7 +48,7 @@ class ItemList(Resource):
         da_ti =(data_start,time_start,data_stop,time_stop)
 
 
-        data=data_operation.get_data_db(da_ti)
+        data=data_operation.get_data_db_all()
 
         return data
 
@@ -90,8 +90,7 @@ def line_chart_2():
 
     da_ti =(data_start,time_start,data_stop,time_stop)
 
-
-    data=data_operation.get_data_db(da_ti)
+    data=data_operation.get_data_db_all()
 
     print(data)
     data_1 =[]
