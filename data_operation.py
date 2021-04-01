@@ -41,17 +41,13 @@ def add_data_db(name,t1,t2,t3,t4,time,date):
 
 
 def get_data_db(da_ti):
-    da_ti_start = datetime.datetime.strptime(da_ti[0]+' '+da_ti[1],"%Y-%m-%d %H:%M")
-    da_ti_stop = datetime.datetime.strptime(da_ti[2]+' '+da_ti[3],"%Y-%m-%d %H:%M")
-    print (da_ti_start.time())
-    print (da_ti_stop.time())
     conn =sqlite3.connect("data.db")
     c=conn.cursor()
     query = """
     SELECT * FROM "stock" WHERE "time" > ? AND "time" < ? ;
     """
 
-    c.execute(query,(str(da_ti_start.time()),str(da_ti_stop.time())))
+    c.execute(query,(str(da_ti[1]),str(da_ti[3])))
 
     item =c.fetchall()
     return item
