@@ -72,7 +72,16 @@ def line_chart_2():
     name_4='linia_02'
     name_5='linia_02'
 
-    data=data_operation.get_data_db()
+    data_start = request.form.get('data_start')
+    time_start = request.form.get('time_start')
+
+    data_stop = request.form.get('data_stop')
+    time_stop = request.form.get('time_stop')
+
+    da_ti =(data_start,time_start,data_stop,time_stop)
+
+
+    data=data_operation.get_data_db(da_ti)
 
     print(data)
     data_1 =[]
@@ -85,16 +94,8 @@ def line_chart_2():
     name=('','linia_1','linia_2','linia_3','linia_4')
 
 
-    data_start = request.form.get('data_start')
-    time_start = request.form.get('time_start')
 
-    data_stop = request.form.get('data_stop')
-    time_stop = request.form.get('time_stop')
-
-    data_time =(data_start,time_start,data_stop,time_stop)
-
-
-    return render_template('chart_2.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1,data_time=data_time)
+    return render_template('chart_2.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1)
 
 
 
