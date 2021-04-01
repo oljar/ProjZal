@@ -10,7 +10,7 @@ def data_generator():
 
 
     time = datetime.datetime.now().strftime('%H:%M:%S')
-    date = datetime.datetime.now().strftime('%Y-%m-%d')
+    date = datetime.datetime.now().strftime('%d-%m-%Y')
 
     t1 = random.randint(0, 10)
     t2 = random.randint(0, 10)

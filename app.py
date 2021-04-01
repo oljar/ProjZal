@@ -74,8 +74,6 @@ def index():
 @app.route('/chart_2', methods=['POST'])
 def line_chart_2():
 
-
-
     name_1=''
     name_2='linia_02'
     name_3='linia_02'
