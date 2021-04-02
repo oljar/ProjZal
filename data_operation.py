@@ -40,7 +40,7 @@ def add_data_db(name,t1,t2,t3,t4,time,date):
     conn.close()
 
 
-def get_data_db_all(da_ti):
+def get_data_db(da_ti):
     conn =sqlite3.connect("data.db")
     c=conn.cursor()
     print (da_ti)
@@ -54,6 +54,19 @@ def get_data_db_all(da_ti):
 
     item =c.fetchall()
     return item
+
+def get_data_db_all():
+    conn =sqlite3.connect("data.db")
+    c=conn.cursor()
+    query = """
+    SELECT * FROM "stock" ;
+    """
+
+    c.execute(query,)
+
+    item =c.fetchall()
+    return item
+
 
 def get_data_name_db(name):
     conn =sqlite3.connect("data.db")

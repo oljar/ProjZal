@@ -40,13 +40,6 @@ class Item(Resource):
 class ItemList(Resource):
 
     def get(self):
-        data_start = request.form.get('data_start')
-        time_start = request.form.get('time_start')
-        data_stop = request.form.get('data_stop')
-        time_stop = request.form.get('time_stop')
-
-        da_ti =(data_start,time_start,data_stop,time_stop)
-
 
         data=data_operation.get_data_db_all()
 
@@ -88,7 +81,7 @@ def line_chart_2():
 
     da_ti =(data_start,time_start,data_stop,time_stop)
 
-    data=data_operation.get_data_db_all(da_ti)
+    data=data_operation.get_data_db(da_ti)
 
     print(data)
     data_1 =[]
