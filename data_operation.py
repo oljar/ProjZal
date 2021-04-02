@@ -45,13 +45,19 @@ def get_data_db(da_ti):
     c=conn.cursor()
     print (da_ti)
     query = """
-    SELECT * FROM "stock" WHERE  "Date" BETWEEN strftime('%Y-%m-%d',?) AND  strftime('%Y-%m-%d',?) ;
+    SELECT * FROM "stock" WHERE  "Date" BETWEEN strftime('%Y-%m-%d',?) AND  strftime('%Y-%m-%d',?) AND "Time" BETWEEN strftime('%H-%M-%dS',?) AND  strftime('%H-%M-%S',?) ;
     """
     print ((da_ti[0],da_ti[2]))
-    t1= str(da_ti[0])
-    t2 = str(da_ti[2])
 
-    c.execute(query,(t1,t2))
+
+    print (da_ti[1])
+
+    t0= str(da_ti[0])
+    t2 = str(da_ti[2])
+    t1= str(da_ti[1])
+    t3 = str(da_ti[3])
+
+    c.execute(query,(t0,t2,t1,t3))
 
     item =c.fetchall()
     return item
