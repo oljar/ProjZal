@@ -45,7 +45,7 @@ def get_data_db(da_ti):
     c=conn.cursor()
     print (da_ti)
     query = """
-    SELECT * FROM "stock" WHERE "date" = "2021/04/02";
+    SELECT * FROM "stock";
     """
     print ((da_ti[0],da_ti[2]))
     t1= str(da_ti[0])
