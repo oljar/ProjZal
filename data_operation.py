@@ -45,12 +45,12 @@ def get_data_db(da_ti):
     c=conn.cursor()
     print (da_ti)
     query = """
-    SELECT * FROM "stock" WHERE "date" > ? and "date" < ?  ;
+    SELECT * FROM "stock" WHERE "date" = ?  ;
     """
     print ((da_ti[0],da_ti[2]))
     t1= str(da_ti[0])
     t2 = str(da_ti[2])
-    c.execute(query,(t1,t2),)
+    c.execute(query,(t1),)
 
     item =c.fetchall()
     return item
