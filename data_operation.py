@@ -15,8 +15,8 @@ def create_db():
         "t2"	REAL,
         "t3"    REAL,
         "t4"	REAl,
-        "Time"  STRING,
-        "Date"  STRING
+        "time"  STRING,
+        "date"  STRING
         
     );
     """
@@ -40,14 +40,17 @@ def add_data_db(name,t1,t2,t3,t4,time,date):
     conn.close()
 
 
-def get_data_db_all():
+def get_data_db_all(da_ti):
     conn =sqlite3.connect("data.db")
     c=conn.cursor()
+    print (da_ti)
     query = """
-    SELECT * FROM "stock"  ;
+    SELECT * FROM "stock" WHERE "date" > ? and "date" < ?  ;
     """
-
-    c.execute(query,)
+    print ((da_ti[0],da_ti[2]))
+    t1= str(da_ti[0])
+    t2 = str(da_ti[2])
+    c.execute(query,(t1,t2),)
 
     item =c.fetchall()
     return item

@@ -88,7 +88,7 @@ def line_chart_2():
 
     da_ti =(data_start,time_start,data_stop,time_stop)
 
-    data=data_operation.get_data_db_all()
+    data=data_operation.get_data_db_all(da_ti)
 
     print(data)
     data_1 =[]
