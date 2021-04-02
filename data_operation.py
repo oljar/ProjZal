@@ -57,7 +57,7 @@ def get_data_db(da_ti):
     t1= str(da_ti[1])
     t3 = str(da_ti[3])
 
-    c.execute(query,(t0,t2,t1,t3))
+    c.execute(query,(t0,t2))
 
     item =c.fetchall()
     return item
