@@ -30,9 +30,9 @@ class Item(Resource):
 
     def post(self, name):
         data = request.get_json()
-        item = {'name': name, 't1': data['t1'], 't2': data['t2'], 't3': data['t3'], 't4': data['t4'],'date': data['date'], 'time': data['time']}
+        item = {'name': name, 't1': data['t1'], 't2': data['t2'], 't3': data['t3'], 't4': data['t4'],'date': data['time'], 'time': data['date']}
         items.append(item)
-        data_operation.add_data_db(name, data['t1'], data['t2'], data['t3'], data['t4'], data['date'], data['time'])
+        data_operation.add_data_db(name, data['t1'], data['t2'], data['t3'], data['t4'], data['time'], data['date'])
 
         return item, 201
 
