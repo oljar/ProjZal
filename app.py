@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request,render_template, redirect
+from flask import Flask, request,render_template, redirect, session,url_for
 from flask_restful import Resource, Api
 import json
 import data_operation
@@ -11,6 +11,8 @@ import requests
 app = Flask(__name__,template_folder='templates')
 
 api = Api(app)
+app.secret_key = 'tajny-klucz-hQmJW0Sz2K'
+
 
 if not os.path.isfile('data.db'):
     data_operation.create_db()
@@ -56,7 +58,11 @@ class ItemListName(Resource):
 @app.route('/')
 def index():
 
-      return render_template('index.html')
+        if not session:
+            return redirect(url_for('login'))
+
+
+        return render_template('index.html')
 
 
 
@@ -99,9 +105,60 @@ def line_chart_2():
 
 
 
+
+
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'GET':
+        return render_template('login.html')
+
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        # conn = get_connection()
+        # c = conn.cursor()
+        #
+        # result = c.execute('SELECT * FROM users WHERE username = ?', (username,))
+        # user_data = result.fetchone()
+
+        # if user_data:
+        #     password_from_db = user_data['password']
+
+        password_from_db = "aaa"
+        user_data={}
+        user_data['id'] = "aaa"
+        user_data['username'] = "aaa"
+
+
+
+
+        if password_from_db == password and user_data['username'] == username :
+             session['user_id'] = user_data['id']
+             session['username'] = user_data['username']
+
+             return redirect(url_for('index'))
+
+        return 'błąd!'
+
+
+
+
+
+
+
+
 api.add_resource(Item, '/<string:name>')
 api.add_resource(ItemList, '/list')
 api.add_resource(ItemListName, '/list/<string:name>')
+
+
+
+
+
+
+
 
 
 
