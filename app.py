@@ -1,5 +1,6 @@
 import os
-
+import sqlite3
+from werkzeug.security import check_password_hash
 from flask import Flask, request,render_template, redirect, session,url_for
 from flask_restful import Resource, Api
 import json
@@ -126,21 +127,30 @@ def login():
         # if user_data:
         #     password_from_db = user_data['password']
 
-        password_from_db = "aaa"
-        user_data={}
-        user_data['id'] = "aaa"
-        user_data['username'] = "aaa"
+
+        conn =sqlite3.connect("data.db")
+        #conn.row_factory = sqlite3.Row
+        c=conn.cursor()
+        query = """
+        SELECT * FROM "users" WHERE "username" = ?;
+        """
+        username=username
+        c.execute(query,(username,))
+        user_data = c.fetchall()
+        print (user_data)
 
 
 
+        if user_data:
+            password_from_db = user_data[0][2]
 
-        if password_from_db == password and user_data['username'] == username :
-             session['user_id'] = user_data['id']
-             session['username'] = user_data['username']
+            if check_password_hash(password_from_db, password):
+                session['username'] = user_data[0][1]
+                return redirect(url_for('index'))
 
-             return redirect(url_for('index'))
 
-        return 'błąd!'
+
+    return 'błąd!'
 
 
 

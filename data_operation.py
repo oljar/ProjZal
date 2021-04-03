@@ -102,3 +102,7 @@ def get_data_name_db(name):
     c.execute(query,(name,))
     item =c.fetchall()
     return item
+
+
+
+
