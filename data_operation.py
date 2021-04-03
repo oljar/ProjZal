@@ -5,6 +5,7 @@ import datetime
 def create_db():
 
     conn =sqlite3.connect("data.db")
+
     c=conn.cursor()
     query = """
         DROP TABLE IF EXISTS "stock";
@@ -17,8 +18,24 @@ def create_db():
         "t4"	REAl,
         "time"  STRING,
         "date"  STRING
+        );
         
-    );
+        DROP TABLE IF EXISTS "users";
+        
+        CREATE TABLE "users"
+        (
+            "id"       INTEGER PRIMARY KEY AUTOINCREMENT,
+            "username" TEXT    NOT NULL,
+            "password" TEXT    NOT NULL
+        );
+        
+        -- 'testowy' ma hasło 'testowy'
+        INSERT INTO "users"
+        VALUES (NULL, 'testowy', 'pbkdf2:sha256:150000$pZTQ81tw$0b4c87aaa463676d91c6c99690634288b1fae8a4f8a34df865ae72f504a50e0a');
+
+        
+        
+   
     """
     c.executescript(query)
     conn.commit()
