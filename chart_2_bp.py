@@ -36,12 +36,12 @@ def line_chart_2():
         data_1.append(one_sample)
 
     v_axis_name ='pomiar'
-    h_axis_name = 'temperatura'
-    name=('','linia_1','linia_2','linia_3','linia_4')
+    h_axis_name = 'Temeratura '+u"\u2103"
+    name=('','czujnik 1','czujnik 2','czujnik 3','czujnik 4')
 
 
 
-    return render_template('chart_2.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1)
+    return render_template('chart_21.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1)
 
 
 
