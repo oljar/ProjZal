@@ -6,6 +6,8 @@ from flask_restful import Resource, Api
 import json
 import data_operation
 import jinja2
+from chart_2_bp import chart_2
+
 import requests
 
 
@@ -13,7 +15,7 @@ app = Flask(__name__,template_folder='templates')
 
 api = Api(app)
 app.secret_key = 'tajny-klucz-hQmJW0Sz2K'
-
+app.register_blueprint(chart_2)
 
 if not os.path.isfile('data.db'):
     data_operation.create_db()
@@ -23,6 +25,7 @@ items = []
 
 
 class Item(Resource):
+
 
     def get(self, name):
         solution = []
@@ -67,48 +70,6 @@ def index():
 
 
 
-
-
-
-
-@app.route('/chart_2', methods=['POST'])
-def line_chart_2():
-
-    name_1=''
-    name_2='linia_02'
-    name_3='linia_02'
-    name_4='linia_02'
-    name_5='linia_02'
-
-    data_start = request.form.get('data_start')
-    time_start = request.form.get('time_start')
-
-    data_stop = request.form.get('data_stop')
-    time_stop = request.form.get('time_stop')
-
-    da_ti =(data_start,time_start,data_stop,time_stop)
-
-    data=data_operation.get_data_db(da_ti)
-
-    print(data)
-    data_1 =[]
-    for i in range(len(data)):
-        one_sample = [data[i][0],data[i][2],data[i][3],data[i][4],data[i][5]] #[x,y,y]
-        data_1.append(one_sample)
-
-    v_axis_name ='pomiar'
-    h_axis_name = 'temperatura'
-    name=('','linia_1','linia_2','linia_3','linia_4')
-
-
-
-    return render_template('chart_2.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1)
-
-
-
-
-
-
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -117,15 +78,6 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-
-        # conn = get_connection()
-        # c = conn.cursor()
-        #
-        # result = c.execute('SELECT * FROM users WHERE username = ?', (username,))
-        # user_data = result.fetchone()
-
-        # if user_data:
-        #     password_from_db = user_data['password']
 
 
         conn =sqlite3.connect("data.db")
@@ -149,13 +101,7 @@ def login():
                 return redirect(url_for('index'))
 
 
-
     return 'błąd!'
-
-
-
-
-
 
 
 
