@@ -104,6 +104,11 @@ def login():
     return 'błąd!'
 
 
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('login'))
+
 
 api.add_resource(Item, '/<string:name>')
 api.add_resource(ItemList, '/list')
