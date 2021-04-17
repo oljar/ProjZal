@@ -41,6 +41,22 @@ def line_chart_2():
     h_axis_name = 'Temeratura '+u"\u2103"
     name=('','czujnik 1','czujnik 2','czujnik 3','czujnik 4')
 
+    canals=data_operation.get_channel()
+
+
+    if request.form.get('all_delete') == 'all_delete':
+
+        print("all_delete")
+
+        return render_template ('index.html')
+
+
+    elif request.form.get('serie_delete') == 'serie_delete':
+
+        print("Serie_delete")
+        return render_template ('index.html',canals=canals)
+
+
 
 
     return render_template('chart_21.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1, channel_name=channel_name)
