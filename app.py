@@ -34,6 +34,8 @@ class Item(Resource):
                 solution.append(item)
         return solution
 
+
+
     def post(self, name):
         data = request.get_json()
         item = {'name': name, 't1': data['t1'], 't2': data['t2'], 't3': data['t3'], 't4': data['t4'],'date': data['time'], 'time': data['date']}
@@ -65,8 +67,10 @@ def index():
         if not session:
             return redirect(url_for('login'))
 
+        canals=data_operation.get_channel()
 
-        return render_template('index.html')
+
+        return render_template('index.html',canals=canals)
 
 
 
@@ -113,12 +117,6 @@ def logout():
 api.add_resource(Item, '/<string:name>')
 api.add_resource(ItemList, '/list')
 api.add_resource(ItemListName, '/list/<string:name>')
-
-
-
-
-
-
 
 
 

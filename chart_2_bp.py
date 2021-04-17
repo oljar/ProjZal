@@ -13,11 +13,7 @@ chart_2= Blueprint('chart_2_endpoints', __name__, url_prefix='/')
 @chart_2.route('/chart_2', methods=['POST'])
 def line_chart_2():
 
-    name_1=''
-    name_2='linia_02'
-    name_3='linia_02'
-    name_4='linia_02'
-    name_5='linia_02'
+
 
     data_start = request.form.get('data_start')
     time_start = request.form.get('time_start')
@@ -27,9 +23,15 @@ def line_chart_2():
 
     da_ti =(data_start,time_start,data_stop,time_stop)
 
-    data=data_operation.get_data_db(da_ti)
+    list_position = int(request.form.get('select_list'))
+    channel_list = data_operation.get_channel()
 
-    print(data)
+    channel_name = channel_list[list_position-1]
+
+    data = data_operation.get_data_time_name_db(da_ti,channel_name)
+
+
+
     data_1 =[]
     for i in range(len(data)):
         one_sample = [data[i][0],data[i][2],data[i][3],data[i][4],data[i][5]] #[x,y,y]
@@ -41,7 +43,7 @@ def line_chart_2():
 
 
 
-    return render_template('chart_21.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1)
+    return render_template('chart_21.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1, channel_name=channel_name)
 
 
 

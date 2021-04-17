@@ -16,80 +16,40 @@
         {% include "header.html" %}
 
 
-        <div class="container">
+            <div class="container">
 
-            <div >
-                <div class="row">
-<!--                    <div style="height:30px">-->
-                    <div class="a" >
+                <div >
+                    <div class="row">
+    <!--                    <div style="height:30px">-->
+                        <div class="a" >
+
+                        </div>
 
                     </div>
-
                 </div>
-            </div>
-
-
-            <div class="row">
-
                 <form method="post" action="chart_2">
 
-                    <aside class ="col-md-8">
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >From Date</span>
-                            </div>
-
-                            <input type="date" class="form-control " name="data_start" >
-                            <input type="time" class="form-control " name="time_start">
-
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >From Time</span>
-                            </div>
-                        </div>
-
-                    </aside>
-
-
-
                     <div >
                         <div class="row">
-                            <div class="b">
 
+                            <div class="a" >
+                                <select class="form-select" name="select_list">
+                                    <option selected>Wybierz kanał</option>
+                                    {% for i in canals %}
+                                         <option value={{loop.index}} >{{i}}</option>
+                                    {% endfor %}
+
+
+                                </select>
                             </div>
 
                         </div>
                     </div>
 
-                    <aside class ="col-md-8">
-
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >  To Date  </span>
-                            </div>
-
-                                <input type="date" class="form-control" name="data_stop">
-                                <input type="time" class="form-control" name="time_stop">
-
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" >To Time</span>
-                            </div>
-
-
-                        </div>
-
-                    </aside>
-
-                    <aside class ="col-md-4">
-                    </aside>
-
-
-
-
-
                     <div >
                         <div class="row">
-                            <div class="b">
+                            <!--                    <div style="height:30px">-->
+                            <div class="s" >
 
                             </div>
 
@@ -99,18 +59,88 @@
 
 
 
-                    <aside class ="col-md-8">
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </aside>
-                    <aside class ="col-md-4">
-                    </aside>
+
+                    <div class="row">
 
 
+
+                            <aside class ="col-md-8">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" >From Date</span>
+                                    </div>
+
+                                    <input type="date" class="form-control " name="data_start" >
+                                    <input type="time" class="form-control " name="time_start">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" >From Time</span>
+                                    </div>
+                                </div>
+
+                            </aside>
+
+
+
+                            <div >
+                                <div class="row">
+                                    <div class="b">
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <aside class ="col-md-8">
+
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" >  To Date  </span>
+                                    </div>
+
+                                        <input type="date" class="form-control" name="data_stop">
+                                        <input type="time" class="form-control" name="time_stop">
+
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" >To Time</span>
+                                    </div>
+
+
+                                </div>
+
+                            </aside>
+
+                            <aside class ="col-md-2">
+                            </aside>
+
+
+                            <div >
+                                <div class="row">
+                                    <div class="b">
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                            <aside class ="col-md-2">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </aside>
+                            <aside class ="col-md-2">
+
+
+                            </aside>
+
+                    </div>
                 </form>
 
 
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
-        </div>
+
 </body>
 </html>

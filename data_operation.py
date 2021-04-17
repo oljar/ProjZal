@@ -23,13 +23,13 @@ def create_db():
         INSERT INTO "stock"
        
         VALUES
-        (1, 'canal_1', 0, 3, 1 , 10,'05:00:00','2021-04-04'),
-        (2, 'canal_1',10, 2, 2, 5,'05:05:00','2021-04-04'),
+        (1, 'canal_1', 0, 0, 0 , 5,'05:00:00','2021-04-04'),
+        (2, 'canal_1',1, 2, 2, 5,'05:05:00','2021-04-04'),
         (3, 'canal_1', 2, 3, 3, 4,'05:07:00','2021-04-04'),
-        (4, 'canal_1', 7, 6, 9, 4,'05:09:00','2021-04-04'),
-        (5, 'canal_1', 3, 3, 1, 3,'05:10:00','2021-04-04'),
-        (6, 'canal_1', 4, 9, 3, 2,'05:14:00','2021-04-04'),
-        (7, 'canal_1', 1, 3, 1, 1,'05:17:00','2021-04-04');
+        (4, 'canal_1', 3, 2, 5, 5,'05:09:00','2021-04-04'),
+        (5, 'canal_2', 7, 8, 9, 10,'05:10:00','2021-04-04'),
+        (6, 'canal_2', 6, 9, 9, 9,'05:14:00','2021-04-04'),
+        (7, 'canal_2', 5,5, 5, 10,'05:17:00','2021-04-04');
 
         
         
@@ -109,7 +109,7 @@ def get_data_name_db(name):
     conn =sqlite3.connect("data.db")
     c=conn.cursor()
     query = """
-    SELECT * FROM "stock" WHERE "name" = ?;
+    SELECT "*" FROM "stock" WHERE "name" = ?;
     """
     name=name
     c.execute(query,(name,))
@@ -118,4 +118,48 @@ def get_data_name_db(name):
 
 
 
+
+
+
+
+
+def get_channel():
+    conn =sqlite3.connect("data.db")
+    c=conn.cursor()
+    query = """
+    SELECT "name" FROM "stock" ;
+    """
+    c.execute(query,)
+    item =c.fetchall()
+    channel_list=[]
+    for i in item :
+        channel_list.append (i[0])
+
+    return list(set(channel_list))
+
+
+
+
+def get_data_time_name_db(da_ti,channel_name):
+    conn =sqlite3.connect("data.db")
+    c=conn.cursor()
+
+    query = """
+    SELECT * FROM "stock"
+    WHERE  datetime("Date","Time") > strftime('%Y-%m-%d %H:%M:S' ,?) AND datetime("Date","Time") < strftime('%Y-%m-%d %H:%M:S' ,?)AND "name" = ?  ;
+   
+    """
+
+
+
+
+
+    t5= datetime.datetime.strptime(da_ti[0] +' '+ da_ti[1]+':00','%Y-%m-%d %H:%M:%S')
+    t6= datetime.datetime.strptime(da_ti[2] +' '+ da_ti[3]+':00','%Y-%m-%d %H:%M:%S')
+
+
+    c.execute(query,(t5,t6,channel_name))
+
+    item =c.fetchall()
+    return item
 
