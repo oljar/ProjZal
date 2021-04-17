@@ -163,3 +163,28 @@ def get_data_time_name_db(da_ti,channel_name):
     item =c.fetchall()
     return item
 
+
+def all_delete():
+
+    conn =sqlite3.connect("data.db")
+    c=conn.cursor()
+    query = """
+    DELETE FROM "stock" ;
+    """
+    c.execute(query,)
+    conn.commit()
+
+
+def serie_delete(channel_name):
+
+    conn =sqlite3.connect("data.db")
+    c=conn.cursor()
+    query = """
+    DELETE FROM "stock" WHERE "name" = ?;
+    """
+    c.execute(query,(channel_name,))
+    conn.commit()
+
+
+
+

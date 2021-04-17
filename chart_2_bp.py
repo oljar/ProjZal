@@ -23,10 +23,15 @@ def line_chart_2():
 
     da_ti =(data_start,time_start,data_stop,time_stop)
 
+
+
     list_position = int(request.form.get('select_list'))
     channel_list = data_operation.get_channel()
-
     channel_name = channel_list[list_position-1]
+
+
+
+
 
     data = data_operation.get_data_time_name_db(da_ti,channel_name)
 
@@ -38,7 +43,7 @@ def line_chart_2():
         data_1.append(one_sample)
 
     v_axis_name ='pomiar'
-    h_axis_name = 'Temeratura '+u"\u2103"
+    h_axis_name = 'Temperatura '+u"\u2103"
     name=('','czujnik 1','czujnik 2','czujnik 3','czujnik 4')
 
     canals=data_operation.get_channel()
@@ -46,15 +51,21 @@ def line_chart_2():
 
     if request.form.get('all_delete') == 'all_delete':
 
-        print("all_delete")
-
+        data_operation.all_delete()
         return render_template ('index.html')
 
 
     elif request.form.get('serie_delete') == 'serie_delete':
 
-        print("Serie_delete")
-        return render_template ('index.html',canals=canals)
+        data_operation.serie_delete(channel_name)
+        return render_template ('index.html')
+
+
+
+    list_position = int(request.form.get('select_list'))
+    channel_list = data_operation.get_channel()
+    channel_name = channel_list[list_position-1]
+
 
 
 
