@@ -10,9 +10,8 @@ import jinja2
 chart_2= Blueprint('chart_2_endpoints', __name__, url_prefix='/')
 
 
-@chart_2.route('/chart_2', methods=['POST'])
+@chart_2.route('/chart_2', methods=['get', 'post'])
 def line_chart_2():
-
 
 
     data_start = request.form.get('data_start')
@@ -28,10 +27,6 @@ def line_chart_2():
     list_position = int(request.form.get('select_list'))
     channel_list = data_operation.get_channel()
     channel_name = channel_list[list_position-1]
-
-
-
-
 
     data = data_operation.get_data_time_name_db(da_ti,channel_name)
 
@@ -52,21 +47,19 @@ def line_chart_2():
     if request.form.get('all_delete') == 'all_delete':
 
         data_operation.all_delete()
-        return render_template ('index.html')
+        return redirect (url_for('index'))
 
 
     elif request.form.get('serie_delete') == 'serie_delete':
 
         data_operation.serie_delete(channel_name)
-        return render_template ('index.html')
+        return redirect (url_for('index'))
 
 
 
     list_position = int(request.form.get('select_list'))
     channel_list = data_operation.get_channel()
     channel_name = channel_list[list_position-1]
-
-
 
 
 
