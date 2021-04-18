@@ -49,7 +49,7 @@ items = []
 
 class Item(Resource):
 
-    @authenticate_request
+
     def get(self, name):
         solution = []
         for item in items:
@@ -70,7 +70,7 @@ class Item(Resource):
 
 class ItemList(Resource):
 
-    @authenticate_request
+
     def get(self):
 
         data=data_operation.get_data_db_all()
@@ -81,7 +81,7 @@ class ItemList(Resource):
 
 class ItemListName(Resource):
 
-    @authenticate_request
+
     def get(self, name):
         return data_operation.get_data_name_db(name)
 
