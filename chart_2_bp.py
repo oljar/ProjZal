@@ -14,6 +14,8 @@ chart_2= Blueprint('chart_2_endpoints', __name__, url_prefix='/')
 def line_chart_2():
 
 
+
+
     data_start = request.form.get('data_start')
     time_start = request.form.get('time_start')
 
@@ -23,9 +25,16 @@ def line_chart_2():
     da_ti =(data_start,time_start,data_stop,time_stop)
 
 
+    try :
+        channel_list = data_operation.get_channel()
+    except:
+        return 'Brak banych'
 
-    list_position = int(request.form.get('select_list'))
-    channel_list = data_operation.get_channel()
+    try :
+        list_position = int(request.form.get('select_list'))
+    except:
+        return 'Brak pozycji'
+
     channel_name = channel_list[list_position-1]
 
     data = data_operation.get_data_time_name_db(da_ti,channel_name)
@@ -56,9 +65,12 @@ def line_chart_2():
         return redirect (url_for('index'))
 
 
+    try :
+        channel_list = data_operation.get_channel()
+    except:
+        return 'Brak banych'
 
     list_position = int(request.form.get('select_list'))
-    channel_list = data_operation.get_channel()
     channel_name = channel_list[list_position-1]
 
 
