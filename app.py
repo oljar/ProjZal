@@ -9,6 +9,29 @@ import jinja2
 from chart_2_bp import chart_2
 
 import requests
+from functools import wraps
+from werkzeug.exceptions import abort
+
+
+
+def authenticate_request(view):
+    @wraps(view)
+    def wrapped_view(*args, **kwargs):
+
+        # w rzeczywistej aplikacji dla każdego użytkownika powinien być wygenerowany osobny token
+        token_from_database = 'HsudXwo.token.uzytkownika'
+
+        if request.headers.get('X-User-Token') == token_from_database:
+            # jeśli użytkownik przekazał w zapytaniu poprawny token, dostanie dostęp do zasobu
+            return view(*args, **kwargs)
+        else:
+            abort(401)
+
+    return wrapped_view
+
+
+
+
 
 
 app = Flask(__name__,template_folder='templates')
@@ -26,7 +49,7 @@ items = []
 
 class Item(Resource):
 
-
+    @authenticate_request
     def get(self, name):
         solution = []
         for item in items:
@@ -35,7 +58,7 @@ class Item(Resource):
         return solution
 
 
-
+    @authenticate_request
     def post(self, name):
         data = request.get_json()
         item = {'name': name, 't1': data['t1'], 't2': data['t2'], 't3': data['t3'], 't4': data['t4'],'date': data['time'], 'time': data['date']}
@@ -47,6 +70,7 @@ class Item(Resource):
 
 class ItemList(Resource):
 
+    @authenticate_request
     def get(self):
 
         data=data_operation.get_data_db_all()
@@ -57,6 +81,7 @@ class ItemList(Resource):
 
 class ItemListName(Resource):
 
+    @authenticate_request
     def get(self, name):
         return data_operation.get_data_name_db(name)
 
