@@ -33,7 +33,7 @@ def line_chart_2():
     try :
         list_position = int(request.form.get('select_list'))
     except:
-        return 'Brak pozycji'
+        return render_template('fill_db.html')
 
     channel_name = channel_list[list_position-1]
 
