@@ -81,7 +81,7 @@ def line_chart_2():
     try :
         channel_list = data_operation.get_channel()
     except:
-        return 'Brak banych'
+        return render_template('fill_db.html')
 
     try :
         list_position = int(request.form.get('select_list'))
@@ -118,7 +118,7 @@ def line_chart_2():
     try :
         channel_list = data_operation.get_channel()
     except:
-        return 'Brak banych'
+        render_template('fill_db.html')
 
     list_position = int(request.form.get('select_list'))
     channel_name = channel_list[list_position-1]
