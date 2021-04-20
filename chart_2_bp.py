@@ -6,6 +6,7 @@ from flask_restful import Resource, Api
 import json
 import data_operation
 import jinja2
+import datetime
 
 chart_2= Blueprint('chart_2_endpoints', __name__, url_prefix='/')
 
@@ -14,13 +15,65 @@ chart_2= Blueprint('chart_2_endpoints', __name__, url_prefix='/')
 def line_chart_2():
 
 
-
-
     data_start = request.form.get('data_start')
     time_start = request.form.get('time_start')
 
     data_stop = request.form.get('data_stop')
     time_stop = request.form.get('time_stop')
+
+    format_data = "%Y-%m-%d"
+    format_time = "%H:%M"
+
+
+
+
+
+
+    if request.form.get('all_delete') == 'all_delete' or  request.form.get('serie_delete') == 'serie_delete' :
+        data_start = '2021-01-01'
+        time_start = '10:10'
+
+        data_stop = '2021-01-01'
+        time_stop = '10:10'
+
+
+    else:
+
+            try:
+                datetime.datetime. strptime(time_start, format_time)
+            except :
+                return render_template('fill_db.html')
+
+            try:
+                datetime.datetime. strptime(data_stop, format_data)
+            except :
+                return render_template('fill_db.html')
+
+
+            try:
+                datetime.datetime. strptime(time_stop, format_time)
+            except :
+                return render_template('fill_db.html')
+
+
+
+            try:
+                datetime.datetime. strptime(data_start, format_data)
+            except :
+               return render_template('fill_db.html')
+
+
+
+
+
+
+    if request.form.get('all_delete') == 'all_delete':
+
+        data_operation.all_delete()
+        return render_template('fill_db.html')
+
+
+
 
     da_ti =(data_start,time_start,data_stop,time_stop)
 
@@ -34,6 +87,8 @@ def line_chart_2():
         list_position = int(request.form.get('select_list'))
     except:
         return render_template('fill_db.html')
+
+
 
     channel_name = channel_list[list_position-1]
 
@@ -53,13 +108,8 @@ def line_chart_2():
     canals=data_operation.get_channel()
 
 
-    if request.form.get('all_delete') == 'all_delete':
 
-        data_operation.all_delete()
-        return redirect (url_for('index'))
-
-
-    elif request.form.get('serie_delete') == 'serie_delete':
+    if request.form.get('serie_delete') == 'serie_delete':
 
         data_operation.serie_delete(channel_name)
         return redirect (url_for('index'))
