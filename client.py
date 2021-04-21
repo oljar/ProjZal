@@ -5,6 +5,7 @@ import random
 import time as tm
 
 
+
 def data_generator():
 
 
@@ -21,15 +22,13 @@ def data_generator():
 
 
 
-
-
 def post_method():
     chanel = f'chanel{random.randint(0, 5)}'
     t1, t2, t3, t4, time, date = data_generator()
 
 
     url = f'http://projzal.herokuapp.com/{chanel}'
-    headers = {'content-length': '108', 'Content-Type': 'application/json'}
+    headers = {'content-length': '108', 'Content-Type': 'application/json','X-User-Token': 'HsudXwo.token.uzytkownika'}
     k1 = 5000
     json = {
 
@@ -62,7 +61,7 @@ def get_method():
 
 d_cont = 0
 
-tconst=5 #constant time between  between sending implus
+tconst=5 #constant time between  between sending implus###############################################
 
 start = int(tm.time())
 
