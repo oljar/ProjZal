@@ -49,7 +49,7 @@ def post_method():
 
 def get_method():
     url = 'http://projzal.herokuapp.com/list'
-    headers = {'content-length': '108', 'Content-Type': 'application/json'}
+    headers = {'content-length': '108', 'Content-Type': 'application/json','X-User-Token': 'HsudXwo.token.uzytkownika'}
 
     req = requests.get(url)
 

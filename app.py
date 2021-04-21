@@ -1,7 +1,7 @@
 import os
 import sqlite3
 from werkzeug.security import check_password_hash
-from flask import Flask, request,render_template, redirect, session,url_for
+from flask import Flask, request,render_template, redirect, session,url_for,jsonify
 from flask_restful import Resource, Api
 import json
 import data_operation
@@ -49,7 +49,7 @@ items = []
 
 class Item(Resource):
 
-
+    @authenticate_request
     def get(self, name):
         solution = []
         for item in items:
@@ -70,7 +70,7 @@ class Item(Resource):
 
 class ItemList(Resource):
 
-
+    @authenticate_request
     def get(self):
 
         data=data_operation.get_data_db_all()
@@ -142,17 +142,13 @@ def logout():
 
 api.add_resource(Item, '/<string:name>')
 api.add_resource(ItemList, '/list')
-api.add_resource(ItemListName, '/list/<string:name>')
+#api.add_resource(ItemListName, '/list/<string:name>')
 
 
 
 
-# app.run(debug=True)
 
-# #
+
 if __name__ == "__main__":
-# #port = int(os.environ.get("PORT", 5000))
-# #    #app.run(host='0.0.0.0', port=port)
-# #
+
      app.run(debug=True)
-# #app.run()
