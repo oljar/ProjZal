@@ -47,21 +47,12 @@ def post_method():
     print(req.text)
     return req
 
-def get_method():
-    url = 'http://projzal.herokuapp.com/list'
-    headers = {'content-length': '108', 'Content-Type': 'application/json','X-User-Token': 'HsudXwo.token.uzytkownika'}
-
-    req = requests.get(url)
-
-    print(req.status_code)
-    print(req.headers)
-    print(req.text)
 
 
 
 d_cont = 0
 
-tconst=5 #constant time between  between sending implus###############################################
+tconst=10 #constant time between  between sending implus###############################################
 
 start = int(tm.time())
 
@@ -76,11 +67,10 @@ while True:
 
             if post_method().status_code in (200,201) :
                  print(f'delta {delta} wysłano')
-                 d_cont = delta
-                 print('zawartość bazy' )
-                 get_method()
+                 tm.sleep(0.9)
 
 
 
 
-#get_method()
+
+

@@ -96,17 +96,19 @@ def line_chart_2():
 
 
 
-    data_1 =[]
+    data_1 = []
+    data_2 = []
     for i in range(len(data)):
-        one_sample = [data[i][0],data[i][2],data[i][3],data[i][4],data[i][5]] #[x,y,y]
-        data_1.append(one_sample)
+        first_sample = [data[i][0],data[i][2],data[i][3],data[i][4],data[i][5]] #[x,y,y]
+        second_sample = [data[i][0],data[i][2],data[i][3],data[i][4],data[i][5],data[i][6],data[i][7]]
+        data_1.append(first_sample)
+        data_2.append(second_sample)
 
     v_axis_name ='pomiar'
     h_axis_name = 'Temperatura '+u"\u2103"
-    name=('','czujnik 1','czujnik 2','czujnik 3','czujnik 4')
+    name=('','czujnik 1','czujnik 2','czujnik 3','czujnik 4','godzina','data')
 
     canals=data_operation.get_channel()
-
 
 
     if request.form.get('serie_delete') == 'serie_delete':
@@ -125,7 +127,7 @@ def line_chart_2():
 
 
 
-    return render_template('chart_21.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1, channel_name=channel_name)
+    return render_template('chart_21.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1, data_2=data_2  , channel_name=channel_name)
 
 
 
