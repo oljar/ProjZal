@@ -1,20 +1,18 @@
 import os
 import sqlite3
 from werkzeug.security import check_password_hash
-from flask import Flask,Blueprint, request,render_template, redirect, session,url_for
+from flask import Flask, Blueprint, request, render_template, redirect, session, url_for
 from flask_restful import Resource, Api
 import json
 import data_operation
 import jinja2
 import datetime
 
-chart_2= Blueprint('chart_2_endpoints', __name__, url_prefix='/')
+chart_2 = Blueprint('chart_2_endpoints', __name__, url_prefix='/')
 
 
 @chart_2.route('/chart_2', methods=['get', 'post'])
 def line_chart_2():
-
-
     data_start = request.form.get('data_start')
     time_start = request.form.get('time_start')
 
@@ -24,12 +22,7 @@ def line_chart_2():
     format_data = "%Y-%m-%d"
     format_time = "%H:%M"
 
-
-
-
-
-
-    if request.form.get('all_delete') == 'all_delete' or  request.form.get('serie_delete') == 'serie_delete' :
+    if request.form.get('all_delete') == 'all_delete' or request.form.get('serie_delete') == 'serie_delete':
         data_start = '2021-01-01'
         time_start = '10:10'
 
@@ -39,95 +32,71 @@ def line_chart_2():
 
     else:
 
-            try:
-                datetime.datetime. strptime(time_start, format_time)
-            except :
-                return render_template('fill_db.html')
+        try:
+            datetime.datetime.strptime(time_start, format_time)
+        except:
+            return render_template('fill_db.html')
 
-            try:
-                datetime.datetime. strptime(data_stop, format_data)
-            except :
-                return render_template('fill_db.html')
+        try:
+            datetime.datetime.strptime(data_stop, format_data)
+        except:
+            return render_template('fill_db.html')
 
+        try:
+            datetime.datetime.strptime(time_stop, format_time)
+        except:
+            return render_template('fill_db.html')
 
-            try:
-                datetime.datetime. strptime(time_stop, format_time)
-            except :
-                return render_template('fill_db.html')
-
-
-
-            try:
-                datetime.datetime. strptime(data_start, format_data)
-            except :
-               return render_template('fill_db.html')
-
-
-
-
-
+        try:
+            datetime.datetime.strptime(data_start, format_data)
+        except:
+            return render_template('fill_db.html')
 
     if request.form.get('all_delete') == 'all_delete':
-
         data_operation.all_delete()
         return render_template('fill_db.html')
 
+    da_ti = (data_start, time_start, data_stop, time_stop)
 
-
-
-    da_ti =(data_start,time_start,data_stop,time_stop)
-
-
-    try :
+    try:
         channel_list = data_operation.get_channel()
     except:
         return render_template('fill_db.html')
 
-    try :
+    try:
         list_position = int(request.form.get('select_list'))
     except:
         return render_template('fill_db.html')
 
+    channel_name = channel_list[list_position - 1]
 
-
-    channel_name = channel_list[list_position-1]
-
-    data = data_operation.get_data_time_name_db(da_ti,channel_name)
-
-
+    data = data_operation.get_data_time_name_db(da_ti, channel_name)
 
     data_1 = []
     data_2 = []
     for i in range(len(data)):
-        first_sample = [data[i][0],data[i][2],data[i][3],data[i][4],data[i][5]] #[x,y,y]
-        second_sample = [data[i][0],data[i][2],data[i][3],data[i][4],data[i][5],data[i][6],data[i][7]]
+        first_sample = [data[i][0], data[i][2], data[i][3], data[i][4], data[i][5]]  # [x,y,y]
+        second_sample = [data[i][0], data[i][2], data[i][3], data[i][4], data[i][5], data[i][6], data[i][7]]
         data_1.append(first_sample)
         data_2.append(second_sample)
 
-    v_axis_name ='pomiar'
-    h_axis_name = 'Temperatura '+u"\u2103"
-    name=('','czujnik 1','czujnik 2','czujnik 3','czujnik 4','godzina','data')
+    v_axis_name = 'pomiar'
+    h_axis_name = 'Temperatura ' + u"\u2103"
+    name = ('', 'czujnik 1', 'czujnik 2', 'czujnik 3', 'czujnik 4', 'godzina', 'data')
 
-    canals=data_operation.get_channel()
-
+    canals = data_operation.get_channel()
 
     if request.form.get('serie_delete') == 'serie_delete':
-
         data_operation.serie_delete(channel_name)
-        return redirect (url_for('index'))
+        return redirect(url_for('index'))
 
-
-    try :
+    try:
         channel_list = data_operation.get_channel()
     except:
         render_template('fill_db.html')
 
     list_position = int(request.form.get('select_list'))
-    channel_name = channel_list[list_position-1]
+    channel_name = channel_list[list_position - 1]
 
-
-
-    return render_template('chart_21.html', name=name , h_axis_name = h_axis_name , v_axis_name  = v_axis_name , data=data_1, data_2=data_2  , channel_name=channel_name)
-
-
-
+    return render_template('chart_21.html', name=name, h_axis_name=h_axis_name, v_axis_name=v_axis_name, data=data_1,
+                           data_2=data_2, channel_name=channel_name)
