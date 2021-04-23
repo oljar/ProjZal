@@ -44,7 +44,8 @@ def post_method():
 
 d_cont = 0
 
-tconst = 5  # constant time between  between sending implus###############################################
+tconst = 5
+# constant time between  between sending implus###############################################
 
 start = int(tm.time())
 
