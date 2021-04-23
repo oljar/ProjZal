@@ -10,4 +10,5 @@
 2. Aplikacja korzysta z wersji 3.9.1 
 3. Program został umieszczony na platformie HEROKU pod adresem  https://projzal.herokuapp.com/
    (user - testowy ; hasło - testowy; Dostęp do API : 'X-User-Token': 'HsudXwo.token.uzytkownika' )
+   oraz jest dotępny na gitlabie - https://git.codeme.pl/python-advanced/EZ-1/jaroslaw-olszewski/projzal
 4. Autor Jarosław Olszewski - oljar@tlen.pl   
