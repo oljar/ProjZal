@@ -12,23 +12,6 @@ import requests
 from functools import wraps
 from werkzeug.exceptions import abort
 
-
-def authenticate_request(view):
-    @wraps(view)
-    def wrapped_view(*args, **kwargs):
-
-        # w rzeczywistej aplikacji dla każdego użytkownika powinien być wygenerowany osobny token
-        token_from_database = 'HsudXwo.token.uzytkownika'
-
-        if request.headers.get('X-User-Token') == token_from_database:
-            # jeśli użytkownik przekazał w zapytaniu poprawny token, dostanie dostęp do zasobu
-            return view(*args, **kwargs)
-        else:
-            abort(401)
-
-    return wrapped_view
-
-
 app = Flask(__name__, template_folder='templates')
 
 api = Api(app)
@@ -37,6 +20,34 @@ app.register_blueprint(chart_2)
 
 if not os.path.isfile('data.db'):
     data_operation.create_db()
+
+
+def authenticate_request(view):
+    @wraps(view)
+    def wrapped_view(*args, **kwargs):
+
+        conn = sqlite3.connect("data.db")
+        # conn.row_factory = sqlite3.Row
+        c = conn.cursor()
+        query = """
+        SELECT "token" FROM "users" ;
+        """
+
+        c.execute(query, )
+        token = c.fetchall()
+        print(f'to jest {token}')
+
+        #
+        token_from_database = str(token[0][0])
+
+        if check_password_hash(token_from_database, request.headers.get('X-User-Token')):
+
+            return view(*args, **kwargs)
+        else:
+            abort(401)
+
+    return wrapped_view
+
 
 items = []
 
