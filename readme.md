@@ -5,7 +5,7 @@
    W bazie danych parametry te są zapisywane pod nazwą endpointu na który jest wysyłany słownik metodą POST.
    Standardowo endpoint'y te mają nazwę channel_*.
    Do symulacji pracy mikorokomputera wysyłającego dane ( wysyłania danych testowych) służy dołączony program client.py
-   
+   W celu testowym  w bazie danych są zostały wprowadzone dane z datą 04.04.2021
    
 2. Aplikacja korzysta z wersji 3.9.1 
 3. Program został umieszczony na platformie HEROKU pod adresem  https://projzal.herokuapp.com/
