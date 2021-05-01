@@ -53,7 +53,7 @@ def create_db():
         
    
     """
-    c.executescript(query)
+    c.execute(query)
     conn.commit()
     conn.close()
 
