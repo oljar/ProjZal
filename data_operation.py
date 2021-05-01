@@ -13,13 +13,13 @@ def create_db():
         DROP TABLE IF EXISTS "stock";
         CREATE TABLE "stock" (
         "id"       SERIAL PRIMARY KEY,
-        "name"  CHAR(20),
+        "name"  VARCHAR(20),
         "t1"	REAL,
         "t2"	REAL,
         "t3"    REAL,
         "t4"	REAl,
-        "time"  CHAR(20),
-        "date"  CHAR(20)
+        "time"  VARCHAR(20),
+        "date"  VARCHAR(20)
         );
         
         INSERT INTO "stock"
@@ -40,9 +40,9 @@ def create_db():
         CREATE TABLE "users"
         (
             "id"       SERIAL PRIMARY KEY,
-            "username" CHAR (20)   NOT NULL,
-            "password" CHAR (20)  NOT NULL,
-            "token"    CHAR (50) NOT NULL
+            "username" VARCHAR (20)   NOT NULL,
+            "password" VARCHAR (20)  NOT NULL,
+            "token"    VARCHAR (50) NOT NULL
         );
         
         -- 'testowy' ma hasło 'testowy'
