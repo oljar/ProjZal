@@ -1,12 +1,9 @@
+import sqlite3
 import datetime
-import os
 
-import psycopg2
-
-DATABASE_URL = os.environ['DATABASE_URL']
 
 def create_db():
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = sqlite3.connect("data.db")
 
     c = conn.cursor()
     query = """
@@ -59,7 +56,7 @@ def create_db():
 
 
 def add_data_db(name, t1, t2, t3, t4, time, date):
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = sqlite3.connect("data.db")
     c = conn.cursor()
     query = """
          INSERT INTO "stock" ("name", "t1", "t2", "t3", "t4", "time", "date")
@@ -75,7 +72,7 @@ def add_data_db(name, t1, t2, t3, t4, time, date):
 
 
 def get_data_db(da_ti):
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = sqlite3.connect("data.db")
     c = conn.cursor()
     print(da_ti)
     query = """
@@ -96,7 +93,7 @@ def get_data_db(da_ti):
 
 
 def get_data_db_all():
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = sqlite3.connect("data.db")
     c = conn.cursor()
     query = """
     SELECT * FROM "stock" ;
@@ -109,7 +106,7 @@ def get_data_db_all():
 
 
 def get_data_name_db(name):
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = sqlite3.connect("data.db")
     c = conn.cursor()
     query = """
     SELECT "*" FROM "stock" WHERE "name" = ?;
@@ -121,7 +118,7 @@ def get_data_name_db(name):
 
 
 def get_channel():
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = sqlite3.connect("data.db")
     c = conn.cursor()
     query = """
     SELECT "name" FROM "stock" ;
@@ -136,7 +133,7 @@ def get_channel():
 
 
 def get_data_time_name_db(da_ti, channel_name):
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = sqlite3.connect("data.db")
     c = conn.cursor()
 
     query = """
@@ -155,7 +152,7 @@ def get_data_time_name_db(da_ti, channel_name):
 
 
 def all_delete():
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = sqlite3.connect("data.db")
     c = conn.cursor()
     query = """
     DELETE FROM "stock" ;
@@ -165,7 +162,7 @@ def all_delete():
 
 
 def serie_delete(channel_name):
-    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    conn = sqlite3.connect("data.db")
     c = conn.cursor()
     query = """
     DELETE FROM "stock" WHERE "name" = ?;

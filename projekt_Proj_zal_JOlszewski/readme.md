@@ -12,4 +12,4 @@
    (user - testowy ; hasło - testowy; Dostęp do API : 'X-User-Token': 'HsudXwo.token.uzytkownika' )
    oraz jest dotępny na gitlabie - https://git.codeme.pl/python-advanced/EZ-1/jaroslaw-olszewski/projzal
    Aby inicjalizować bazę danych oraz aplikację należy uruchomić plik app.py
-
+4. Autor Jarosław Olszewski - oljar@tlen.pl   

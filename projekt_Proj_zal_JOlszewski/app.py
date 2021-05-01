@@ -1,4 +1,5 @@
 import os
+import sqlite3
 from werkzeug.security import check_password_hash
 from flask import Flask, request, render_template, redirect, session, url_for, jsonify
 from flask_restful import Resource, Api
@@ -6,7 +7,7 @@ import json
 import data_operation
 import jinja2
 from chart_2_bp import chart_2
-import psycopg2
+
 import requests
 from functools import wraps
 from werkzeug.exceptions import abort
@@ -17,8 +18,6 @@ api = Api(app)
 app.secret_key = 'tajny-klucz-hQmJW0Sz2K'
 app.register_blueprint(chart_2)
 
-DATABASE_URL = os.environ['DATABASE_URL']
-
 if not os.path.isfile('data.db'):
     data_operation.create_db()
 
@@ -27,7 +26,8 @@ def authenticate_request(view):
     @wraps(view)
     def wrapped_view(*args, **kwargs):
 
-        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        conn = sqlite3.connect("data.db")
+        # conn.row_factory = sqlite3.Row
         c = conn.cursor()
         query = """
         SELECT "token" FROM "users" ;
@@ -107,8 +107,8 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-
+        conn = sqlite3.connect("data.db")
+        # conn.row_factory = sqlite3.Row
         c = conn.cursor()
         query = """
         SELECT * FROM "users" WHERE "username" = ?;
@@ -142,5 +142,3 @@ api.add_resource(ItemList, '/list')
 if __name__ == "__main__":
     #     app.run(debug=True)
     app.run()
-
-
