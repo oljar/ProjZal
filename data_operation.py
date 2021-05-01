@@ -3,7 +3,7 @@ import os
 
 import psycopg2
 
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.environ['HEROKU_POSTGRESQL_ONYX_URL']
 
 def create_db():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
