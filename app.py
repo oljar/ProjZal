@@ -13,6 +13,7 @@ from werkzeug.exceptions import abort
 
 app = Flask(__name__, template_folder='templates')
 
+
 api = Api(app)
 app.secret_key = 'tajny-klucz-hQmJW0Sz2K'
 app.register_blueprint(chart_2)
