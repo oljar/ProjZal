@@ -18,8 +18,8 @@ def create_db():
         "t2"	REAL,
         "t3"    REAL,
         "t4"	REAl,
-        "time"  VARCHAR(20),
-        "date"  VARCHAR(20)
+        "time"  VARCHAR(40),
+        "date"  VARCHAR(40)
         );
         
         INSERT INTO "stock"
@@ -40,8 +40,8 @@ def create_db():
         CREATE TABLE "users"
         (
             "id"       SERIAL PRIMARY KEY,
-            "username" VARCHAR (20)   NOT NULL,
-            "password" VARCHAR (20)  NOT NULL,
+            "username" VARCHAR (40)   NOT NULL,
+            "password" VARCHAR (40)  NOT NULL,
             "token"    VARCHAR (50) NOT NULL
         );
         
