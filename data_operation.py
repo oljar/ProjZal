@@ -18,8 +18,8 @@ def create_db():
         "t2"	REAL,
         "t3"    REAL,
         "t4"	REAl,
-        "time"  VARCHAR(400),
-        "date"  VARCHAR(400)
+        "time"  TIME,
+        "date"  DATE
         );
         
         INSERT INTO "stock"
