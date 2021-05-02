@@ -154,7 +154,7 @@ def get_data_time_name_db(da_ti, channel_name):
     logging.basicConfig(level=logging.DEBUG)
     logging.debug(t5, t6,channel_name)
 
-    c.execute(query, (t5, t6,channel_name))
+    c.execute(query, (t5, t6,channel_name,))
 
 
 
