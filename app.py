@@ -20,8 +20,8 @@ app.register_blueprint(chart_2)
 
 DATABASE_URL = os.environ['HEROKU_POSTGRESQL_ONYX_URL']
 
-if not os.path.isfile('data.db'):
-    data_operation.create_db()
+#if not os.path.isfile('data.db'):
+data_operation.create_db()
 
 
 def authenticate_request(view):
