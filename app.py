@@ -141,7 +141,7 @@ api.add_resource(ItemList, '/list')
 
 
 if __name__ == "__main__":
-    #     app.run(debug=True)
-    app.run()
+    app.run(debug=True)
+    #app.run()
 
 
