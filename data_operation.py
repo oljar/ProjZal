@@ -1,7 +1,6 @@
 import datetime
 import os
 import logging
-logging.basicConfig(level=logging.DEBUG)
 import psycopg2
 
 DATABASE_URL = os.environ['HEROKU_POSTGRESQL_ONYX_URL']
@@ -152,7 +151,7 @@ def get_data_time_name_db(da_ti, channel_name):
 
     t5 = datetime.datetime.strptime(da_ti[0] + ' ' + da_ti[1] + ':00', '%Y-%m-%d %H:%M:%S')
     t6 = datetime.datetime.strptime(da_ti[2] + ' ' + da_ti[3] + ':00', '%Y-%m-%d %H:%M:%S')
-
+    logging.basicConfig(level=logging.DEBUG)
     logging.debug(t5, t6,channel_name)
 
     c.execute(query, (t5, t6,channel_name))
