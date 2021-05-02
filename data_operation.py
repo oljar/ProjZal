@@ -47,7 +47,7 @@ def create_db():
         
         -- 'testowy' ma hasło 'testowy'
         INSERT INTO "users"
-        VALUES (NULL, 'testowy', 'pbkdf2:sha256:150000$pZTQ81tw$0b4c87aaa463676d91c6c99690634288b1fae8a4f8a34df865ae72f504a50e0a', 'pbkdf2:sha256:150000$j9TH0PIp$d07b8a533d1de17748d5f64c5a63e16f310ace0413ffab2628794950bc91da04');
+        VALUES (1, 'testowy', 'pbkdf2:sha256:150000$pZTQ81tw$0b4c87aaa463676d91c6c99690634288b1fae8a4f8a34df865ae72f504a50e0a', 'pbkdf2:sha256:150000$j9TH0PIp$d07b8a533d1de17748d5f64c5a63e16f310ace0413ffab2628794950bc91da04');
 
         
         
