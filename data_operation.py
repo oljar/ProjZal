@@ -148,7 +148,13 @@ def get_data_time_name_db(da_ti, channel_name):
     t5 = datetime.datetime.strptime(da_ti[0] + ' ' + da_ti[1] + ':00', '%Y-%m-%d %H:%M:%S')
     t6 = datetime.datetime.strptime(da_ti[2] + ' ' + da_ti[3] + ':00', '%Y-%m-%d %H:%M:%S')
 
-    c.execute(query, (t5, t6, channel_name))
+    print (t5)
+    print (t6)
+    print (channel_name)
+
+    c.execute(query, (t5, t6,channel_name))
+
+
 
     item = c.fetchall()
     return item
