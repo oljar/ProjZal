@@ -94,6 +94,7 @@ def index():
   #  if not session:
    #     return redirect(url_for('login'))
 
+
     canals = data_operation.get_channel()
 
     return render_template('index.html', canals=canals)
