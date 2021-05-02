@@ -1,6 +1,7 @@
 import datetime
 import os
-
+import logging
+logging.basicConfig(level=logging.DEBUG)
 import psycopg2
 
 DATABASE_URL = os.environ['HEROKU_POSTGRESQL_ONYX_URL']
@@ -18,8 +19,8 @@ def create_db():
         "t2"	REAL,
         "t3"    REAL,
         "t4"	REAl,
-        "time"  TIME,
-        "date"  DATE
+        "time"  VARCHAR(400),
+        "date"  VARCHAR(400)
         );
         
         INSERT INTO "stock"
@@ -91,6 +92,10 @@ def get_data_db(da_ti):
     # "Time" > strftime('%Y-%m-%d',?) AND "Time" < strftime('%Y-%m-%d',?) AND
     c.execute(query, (t5, t6))
 
+
+
+
+
     item = c.fetchall()
     return item
 
@@ -148,9 +153,9 @@ def get_data_time_name_db(da_ti, channel_name):
     t5 = datetime.datetime.strptime(da_ti[0] + ' ' + da_ti[1] + ':00', '%Y-%m-%d %H:%M:%S')
     t6 = datetime.datetime.strptime(da_ti[2] + ' ' + da_ti[3] + ':00', '%Y-%m-%d %H:%M:%S')
 
+    logging.debug(t5, t6,channel_name)
 
-
-    c.execute(query, (str(t5), str(t6),channel_name))
+    c.execute(query, (t5, t6,channel_name))
 
 
 
