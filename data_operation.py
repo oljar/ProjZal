@@ -2,7 +2,7 @@ import datetime
 import os
 import logging
 import psycopg2
-
+logging.basicConfig(level=logging.DEBUG)
 DATABASE_URL = os.environ['HEROKU_POSTGRESQL_ONYX_URL']
 
 def create_db():
@@ -89,7 +89,7 @@ def get_data_db(da_ti):
     t6 = datetime.datetime.strptime(da_ti[2] + ' ' + da_ti[3] + ':00', '%Y-%m-%d %H:%M:%S')
 
     # "Time" > strftime('%Y-%m-%d',?) AND "Time" < strftime('%Y-%m-%d',?) AND
-    c.execute(query, (t5, t6))
+    c.execute(query, (t5, t6),)
 
 
 
@@ -151,8 +151,8 @@ def get_data_time_name_db(da_ti, channel_name):
 
     t5 = datetime.datetime.strptime(da_ti[0] + ' ' + da_ti[1] + ':00', '%Y-%m-%d %H:%M:%S')
     t6 = datetime.datetime.strptime(da_ti[2] + ' ' + da_ti[3] + ':00', '%Y-%m-%d %H:%M:%S')
-    logging.basicConfig(level=logging.DEBUG)
-    logging.debug(t5, t6,channel_name)
+
+    logging.debug(t5, t6,channel_name,)
 
     c.execute(query, (t5, t6,channel_name,))
 
@@ -178,5 +178,5 @@ def serie_delete(channel_name):
     query = """
     DELETE FROM "stock" WHERE "name" = ?;
     """
-    c.execute(query, (channel_name,))
+    c.execute(query, (channel_name),)
     conn.commit()
