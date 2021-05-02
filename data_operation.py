@@ -12,7 +12,7 @@ def create_db():
     query = """
         DROP TABLE IF EXISTS "stock";
         CREATE TABLE "stock" (
-        "id"       SERIAL PRIMARY KEY,
+        "id"       SERIAL PRIMARY KEY NOT NULL,
         "name"  VARCHAR(200),
         "t1"	REAL,
         "t2"	REAL,
@@ -39,7 +39,7 @@ def create_db():
         
         CREATE TABLE "users"
         (
-            "id"       SERIAL PRIMARY KEY,
+            "id"       SERIAL PRIMARY KEY NOT NULL,
             "username" VARCHAR (400)   NOT NULL,
             "password" VARCHAR (400)  NOT NULL,
             "token"    VARCHAR (500) NOT NULL
