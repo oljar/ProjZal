@@ -87,9 +87,9 @@ def get_data_db(da_ti):
 
     t5 = str(datetime.datetime.strptime(da_ti[0] + ' ' + da_ti[1] + ':00', '%Y-%m-%d %H:%M:%S'))
     t6 = str(datetime.datetime.strptime(da_ti[2] + ' ' + da_ti[3] + ':00', '%Y-%m-%d %H:%M:%S'))
-
+    a=(t5,t6)
     # "Time" > strftime('%Y-%m-%d',?) AND "Time" < strftime('%Y-%m-%d',?) AND
-    c.execute(query, (t5, t6))
+    c.execute(query, (a,))
 
 
 
@@ -153,9 +153,9 @@ def get_data_time_name_db(da_ti, channel_name):
     t6 = str(datetime.datetime.strptime(da_ti[2] + ' ' + da_ti[3] + ':00', '%Y-%m-%d %H:%M:%S'))
 
 
-    a= (t5, t6,channel_name)
-    logging.debug(a)
-    c.execute(query, (t5, t6,channel_name))
+    b= (t5, t6,channel_name)
+    logging.debug(b)
+    c.execute(query, (b,))
 
 
 
