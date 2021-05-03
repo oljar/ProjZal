@@ -145,7 +145,7 @@ def get_data_time_name_db(da_ti, channel_name):
 
     query = """
     SELECT * FROM "stock"
-    WHERE  datetime("Date","Time") > strftime('%Y-%m-%d %H:%M:S' ,?) AND datetime("Date","Time") < strftime('%Y-%m-%d %H:%M:S' ,?)AND "name" = ?  ;
+    WHERE  datetime("Date","Time") > strftime('%Y-%m-%d %H:%M:S' ,?) AND datetime("Date","Time") < strftime('%Y-%m-%d %H:%M:S' ,?)AND "name" = ?;
    
     """
 
@@ -153,6 +153,7 @@ def get_data_time_name_db(da_ti, channel_name):
     t6 = str(datetime.datetime.strptime(da_ti[2] + ' ' + da_ti[3] + ':00', '%Y-%m-%d %H:%M:%S'))
 
     logging.debug(t5, t6,channel_name,)
+
 
     c.execute(query, (t5, t6,channel_name))
 
