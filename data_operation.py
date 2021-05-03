@@ -155,7 +155,7 @@ def get_data_time_name_db(da_ti, channel_name):
 
     b= (t5, t6,channel_name)
     logging.debug(b)
-    c.execute(query)
+    c.execute(query,(b,))
 
 
 
