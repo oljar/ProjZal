@@ -11,6 +11,8 @@ import requests
 from functools import wraps
 from werkzeug.exceptions import abort
 
+DATABASE_URL = os.environ['postgresql-tetrahedral-25493']
+
 app = Flask(__name__, template_folder='templates')
 
 
@@ -18,7 +20,7 @@ api = Api(app)
 app.secret_key = 'tajny-klucz-hQmJW0Sz2K'
 app.register_blueprint(chart_2)
 
-DATABASE_URL = os.environ['postgresql-asymmetrical-01741']
+
 
 #if not os.path.isfile('data.db'):
 data_operation.create_db()
