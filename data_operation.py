@@ -18,8 +18,8 @@ def create_db():
         "t2"	REAL,
         "t3"    REAL,
         "t4"	REAl,
-        "time"  VARCHAR(400),
-        "date"  VARCHAR(400)
+        "time"  TIME,
+        "date"  DATE
         );
         
         INSERT INTO "stock"
@@ -79,7 +79,7 @@ def get_data_db(da_ti):
     c = conn.cursor()
     print(da_ti)
     query = """
-    SELECT * FROM "stock" WHERE  datetime("Date","Time") > strftime('%Y-%m-%d %H:%M:S' ,?) AND datetime("Date","Time") < strftime('%Y-%m-%d %H:%M:S' ,?) ;
+    SELECT * FROM "stock" WHERE  stock.date + stock.time > %s AND stock.date + stock.time < %s ;
     """
     print((da_ti[0], da_ti[2]))
 
@@ -145,7 +145,7 @@ def get_data_time_name_db(da_ti, channel_name):
 
     query = """
     SELECT * FROM "stock"
-    WHERE  datetime("Date","Time") > strftime('%Y-%m-%d %H:%M:S' ,?) AND datetime("Date","Time") < strftime('%Y-%m-%d %H:%M:S' ,?)AND "name" = ?;
+    WHERE  stock.date + stock.time > %s AND stock.date + stock.time < %s AND stock.name = %s;
    
     """
 
