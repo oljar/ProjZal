@@ -3,7 +3,7 @@ import os
 import logging
 import psycopg2
 logging.basicConfig(level=logging.DEBUG)
-DATABASE_URL = os.environ['HEROKU_POSTGRESQL_ONYX_URL']
+DATABASE_URL = os.environ['postgresql-asymmetrical-01741']
 
 def create_db():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
