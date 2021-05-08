@@ -11,7 +11,7 @@ import requests
 from functools import wraps
 from werkzeug.exceptions import abort
 
-DATABASE_URL = os.environ['postgresql-tetrahedral-25493']
+DATABASE_URL = os.environ['DATABASE_URL']
 
 app = Flask(__name__, template_folder='templates')
 

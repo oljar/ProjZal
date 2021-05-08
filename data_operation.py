@@ -116,7 +116,7 @@ def get_data_name_db(name):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     c = conn.cursor()
     query = """
-    SELECT "*" FROM "stock" WHERE "name" = ?;
+    SELECT "*" FROM "stock" WHERE "name" = %s;
     """
     name = name
     c.execute(query, (name,))
@@ -177,7 +177,7 @@ def serie_delete(channel_name):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     c = conn.cursor()
     query = """
-    DELETE FROM "stock" WHERE "name" = ?;
+    DELETE FROM "stock" WHERE "name" = %s;
     """
     c.execute(query, (channel_name),)
     conn.commit()
