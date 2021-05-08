@@ -3,7 +3,7 @@ import os
 import logging
 import psycopg2
 logging.basicConfig(level=logging.DEBUG)
-DATABASE_URL = os.environ['postgresql-tetrahedral-25493']
+DATABASE_URL = os.environ['DATABASE_URL']
 
 def create_db():
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
