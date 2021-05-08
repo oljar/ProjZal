@@ -169,7 +169,7 @@ def all_delete():
     query = """
     DELETE FROM "stock" ;
     """
-    c.execute(query, )
+    c.execute(query)
     conn.commit()
 
 
