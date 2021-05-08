@@ -63,10 +63,10 @@ def add_data_db(name, t1, t2, t3, t4, time, date):
     c = conn.cursor()
     query = """
          INSERT INTO "stock" (stock.name, stock.t1, stock.t2, stock.t3, stock.t4, stock.time, stock.date)
-         VALUES (:name, :t1, :t2, :t3, :t4, :time, :date);       
+         VALUES (%s,%s,%s,%s,%s,%s,%s);       
 """
 
-    item = {"name": name, "t1": t1, "t2": t2, "t3": t3, "t4": t4, "time": time, "date": date}
+    item = (name, t1, t2, t3, t4, time, date)
 
     c.execute(query, item)
 
