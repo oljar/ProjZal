@@ -22,7 +22,7 @@ def post_method():
     t1, t2, t3, t4, time, date = data_generator()
 
     url = f'http://projzal.herokuapp.com/{chanel}'
-    headers = {'content-length': '108', 'Content-Type': 'application/json', 'X-User-Token': 'HsudXwo.token.uzytkownika'}
+    headers = {'content-length': '108', 'Content-Type': 'application/json'}#, 'X-User-Token': 'HsudXwo.token.uzytkownika'}
     k1 = 5000
     json = {
 

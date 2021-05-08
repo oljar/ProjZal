@@ -62,7 +62,7 @@ def add_data_db(name, t1, t2, t3, t4, time, date):
     conn = psycopg2.connect(DATABASE_URL, sslmode='require')
     c = conn.cursor()
     query = """
-         INSERT INTO "stock" ("name", "t1", "t2", "t3", "t4", "time", "date")
+         INSERT INTO "stock" (stock.name, stock.t1, stock.t2, stock.t3, stock.t4, stock.time, stock.date)
          VALUES (:name, :t1, :t2, :t3, :t4, :time, :date);       
 """
 
