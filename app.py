@@ -57,7 +57,7 @@ items = []
 
 class Item(Resource):
 
- #   @authenticate_request
+    @authenticate_request
     def get(self, name):
         solution = []
         for item in items:
@@ -65,7 +65,7 @@ class Item(Resource):
                 solution.append(item)
         return solution
 
- #   @authenticate_request
+    @authenticate_request
     def post(self, name):
         data = request.get_json()
         item = {'name': name, 't1': data['t1'], 't2': data['t2'], 't3': data['t3'], 't4': data['t4'],
@@ -78,7 +78,7 @@ class Item(Resource):
 
 class ItemList(Resource):
 
- #   @authenticate_request
+    @authenticate_request
     def get(self):
         data = data_operation.get_data_db_all()
 
