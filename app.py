@@ -93,8 +93,8 @@ class ItemListName(Resource):
 
 @app.route('/')
 def index():
-  #  if not session:
-   #     return redirect(url_for('login'))
+    if not session:
+        return redirect(url_for('login'))
 
 
     canals = data_operation.get_channel()
@@ -115,7 +115,7 @@ def login():
 
         c = conn.cursor()
         query = """
-        SELECT * FROM "users" WHERE "username" = ?;
+        SELECT * FROM "users" WHERE "username" = %s;
         """
         username = username
         c.execute(query, (username,))
