@@ -179,5 +179,5 @@ def serie_delete(channel_name):
     query = """
     DELETE FROM "stock" WHERE "name" = %s;
     """
-    c.execute(query, (channel_name),)
+    c.execute(query, channel_name)
     conn.commit()
