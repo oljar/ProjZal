@@ -21,9 +21,9 @@ app.secret_key = 'tajny-klucz-hQmJW0Sz2K'
 app.register_blueprint(chart_2)
 
 
-
-if not os.path.isfile('data.db'):
-    data_operation.create_db()
+#
+# if not os.path.isfile('data.db'):
+#     data_operation.create_db()
 
 
 def authenticate_request(view):
